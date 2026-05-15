@@ -14,19 +14,55 @@
       line-height: 1.6;
     }
 
+    /* ── LANG TOGGLE ── */
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 14px 24px;
+      background: #f5f5f7;
+    }
+    .lang-toggle {
+      display: flex;
+      gap: 4px;
+      background: #e8e8ed;
+      border: 1px solid #d2d2d7;
+      border-radius: 20px;
+      padding: 3px;
+    }
+    .lang-toggle button {
+      background: none;
+      border: none;
+      color: #6e6e73;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-toggle button.active {
+      background: #1d1d1f;
+      color: #f5f5f7;
+    }
+    .lang-toggle button:not(.active):hover { color: #1d1d1f; }
+
+    /* ── CONTENT BLOCKS ── */
+    .content { display: none; }
+    .content.visible { display: block; }
+
+    /* ── SHARED STYLES ── */
     header {
       background: #1d1d1f;
       color: #f5f5f7;
       padding: 60px 24px 48px;
       text-align: center;
     }
-
     header h1 {
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.5px;
     }
-
     header p.aka {
       margin-top: 8px;
       font-size: 1rem;
@@ -38,10 +74,7 @@
       margin: 0 auto;
       padding: 56px 24px;
     }
-
-    section {
-      margin-bottom: 52px;
-    }
+    section { margin-bottom: 52px; }
 
     h2 {
       font-size: 1.2rem;
@@ -53,30 +86,17 @@
       border-bottom: 1px solid #d2d2d7;
       padding-bottom: 8px;
     }
+    p { font-size: 1.05rem; color: #3a3a3c; }
 
-    p {
-      font-size: 1.05rem;
-      color: #3a3a3c;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
+    ul { list-style: none; padding: 0; }
     ul li {
       font-size: 1.05rem;
       color: #3a3a3c;
       padding: 6px 0;
       border-bottom: 1px solid #e8e8ed;
     }
-
     ul li:last-child { border-bottom: none; }
-
-    ul li::before {
-      content: "— ";
-      color: #6e6e73;
-    }
+    ul li::before { content: "— "; color: #6e6e73; }
 
     .gaming-division {
       background: #ffffff;
@@ -84,27 +104,19 @@
       padding: 28px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
-
-    .gaming-division p {
-      margin-bottom: 12px;
-    }
-
+    .gaming-division p { margin-bottom: 12px; }
     .gaming-division a {
       color: #0066cc;
       text-decoration: none;
       font-weight: 500;
     }
-
-    .gaming-division a:hover {
-      text-decoration: underline;
-    }
+    .gaming-division a:hover { text-decoration: underline; }
 
     .contact a {
       color: #0066cc;
       text-decoration: none;
       font-size: 1.05rem;
     }
-
     .contact a:hover { text-decoration: underline; }
 
     footer {
@@ -118,46 +130,97 @@
 </head>
 <body>
 
-  <header>
-    <h1>CYB Inc.</h1>
-    <p class="aka">Consultation Yann Boulanger inc.</p>
-  </header>
+  <nav>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <button id="btn-fr" onclick="setLang('fr')">FR</button>
+    </div>
+  </nav>
 
-  <main>
+  <!-- English -->
+  <div id="content-en" class="content visible">
+    <header>
+      <h1>CYB Inc.</h1>
+      <p class="aka">Consultation Yann Boulanger inc.</p>
+    </header>
+    <main>
+      <section>
+        <h2>About</h2>
+        <p>CYB Inc. (Consultation Yann Boulanger inc.) is an IT consulting firm founded in 2016, delivering expertise across the full spectrum of software and technology projects.</p>
+      </section>
+      <section>
+        <h2>Services</h2>
+        <ul>
+          <li>Software Development</li>
+          <li>Systems Analysis</li>
+          <li>Project Management</li>
+          <li>Solution Architecture</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Gaming Division</h2>
+        <div class="gaming-division">
+          <p>CYB Inc. operates a dedicated gaming division focused on mobile game development.</p>
+          <p>Visit <a href="https://cybgames.com" target="_blank" rel="noopener">cybgames.com</a> to learn more.</p>
+        </div>
+      </section>
+      <section class="contact">
+        <h2>Contact</h2>
+        <a href="mailto:yannboulanger@cyb-inc.com">yannboulanger@cyb-inc.com</a>
+      </section>
+    </main>
+    <footer>&copy; 2026 Consultation Yann Boulanger inc. All rights reserved.</footer>
+  </div>
 
-    <section>
-      <h2>About</h2>
-      <p>CYB Inc. (Consultation Yann Boulanger inc.) is an IT consulting firm founded in 2016, delivering expertise across the full spectrum of software and technology projects.</p>
-    </section>
+  <!-- French -->
+  <div id="content-fr" class="content">
+    <header>
+      <h1>CYB inc.</h1>
+      <p class="aka">Consultation Yann Boulanger inc.</p>
+    </header>
+    <main>
+      <section>
+        <h2>À propos</h2>
+        <p>CYB inc. (Consultation Yann Boulanger inc.) est une firme de consultation en TI fondée en 2016, offrant une expertise couvrant l'ensemble du spectre des projets logiciels et technologiques.</p>
+      </section>
+      <section>
+        <h2>Services</h2>
+        <ul>
+          <li>Développement logiciel</li>
+          <li>Analyse de systèmes</li>
+          <li>Gestion de projets</li>
+          <li>Architecture de solutions</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Division jeux</h2>
+        <div class="gaming-division">
+          <p>CYB inc. opère une division dédiée au développement de jeux mobiles.</p>
+          <p>Visitez <a href="https://cybgames.com" target="_blank" rel="noopener">cybgames.com</a> pour en savoir plus.</p>
+        </div>
+      </section>
+      <section class="contact">
+        <h2>Contact</h2>
+        <a href="mailto:yannboulanger@cyb-inc.com">yannboulanger@cyb-inc.com</a>
+      </section>
+    </main>
+    <footer>&copy; 2026 Consultation Yann Boulanger inc. Tous droits réservés.</footer>
+  </div>
 
-    <section>
-      <h2>Services</h2>
-      <ul>
-        <li>Software Development</li>
-        <li>Systems Analysis</li>
-        <li>Project Management</li>
-        <li>Solution Architecture</li>
-      </ul>
-    </section>
+  <script>
+    function setLang(lang) {
+      document.getElementById('content-en').classList.toggle('visible', lang === 'en');
+      document.getElementById('content-fr').classList.toggle('visible', lang === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+      document.documentElement.lang = lang;
+      localStorage.setItem('lang', lang);
+    }
 
-    <section>
-      <h2>Gaming Division</h2>
-      <div class="gaming-division">
-        <p>CYB Inc. operates a dedicated gaming division focused on mobile game development.</p>
-        <p>Visit <a href="https://cybgames.com" target="_blank" rel="noopener">cybgames.com</a> to learn more.</p>
-      </div>
-    </section>
-
-    <section class="contact">
-      <h2>Contact</h2>
-      <a href="mailto:yannboulanger@cyb-inc.com">yannboulanger@cyb-inc.com</a>
-    </section>
-
-  </main>
-
-  <footer>
-    &copy; 2026 Consultation Yann Boulanger inc. All rights reserved.
-  </footer>
+    const saved = localStorage.getItem('lang');
+    const browser = navigator.language.startsWith('fr') ? 'fr' : 'en';
+    setLang(saved || browser);
+  </script>
 
 </body>
 </html>
